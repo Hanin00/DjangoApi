@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.shortcuts import render, get_object_or_404
 
 from django.shortcuts import render
 
@@ -11,9 +12,8 @@ def index(request) :
 
 #get API
 class CatDetail(APIView):
-    def get(self, request,  format=None):
-        cat = models.Cat(name = "안녕하세요 고양이입니다.",locate = "농구장 앞", character = "치즈",
-                         preferences = "템테이션 파란색")
+    def get(self, request,id, format=None):
+        cat = get_object_or_404(models.Cat, pk=id)
         serializer = serializers.CatSerializer(cat)
         return Response(serializer.data)
 
