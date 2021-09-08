@@ -1,8 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
+
 
 app_name = 'urlapi'
 
 urlpatterns=[
-    path('', views.index),
+    path('', views.CatDetail.as_view())
 ]
