@@ -16,3 +16,12 @@ class Post(models.Model):
     writer = models.CharField(max_length = 1000),
     creat_at = models.DateTimeField(),
     update_at = models.DateTimeField(),
+
+
+class Movie(models.Model):
+    title = models.CharField(max_length = 30)
+    genre = models.CharField(max_length = 15)
+    year = models.IntegerField()
+
+    def __str__(self):
+        return self.title
