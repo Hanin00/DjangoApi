@@ -1,7 +1,8 @@
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http.response import HttpResponse
 from django.shortcuts import render, get_object_or_404
-
 from django.shortcuts import render
 
 from . import models
@@ -24,3 +25,22 @@ class CatList(APIView) :
         serializer = serializers.CatSerializer(cat, many=True)
         return Response(serializer.data)
 
+
+
+
+@api_view(['GET'])
+def get_api(request):
+    posts = models.Post.objects.all()
+    serialized_posts = serializers.CatSerializer(posts, many = True)
+    return Response(serialized_posts.data)
+
+@api_view(['POST'])
+def post_api(request):
+    if request.method == 'GET':
+        return HttpResponse(status = 200)
+    if request.method == 'POST':
+        serializer = serializers.CatSerializer(data = request.data, many = True)
+        if(serializer.is_valid()):
+            serializer.save()
+            return Response(serializer.data, status=200)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
