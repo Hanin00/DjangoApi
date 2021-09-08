@@ -21,6 +21,6 @@ class CatDetail(APIView):
 class CatList(APIView) :
     def get(self, request, format = None):
         cat = models.Cat.objects.all()
-        serializer = serializers.CatSerializer(questions, many=True)
+        serializer = serializers.CatSerializer(cat, many=True)
         return Response(serializer.data)
 

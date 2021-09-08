@@ -7,4 +7,3 @@ class Cat(models.Model):
     locate = models.TextField()
     character = models.TextField()
     preferences = models.TextField()
-
