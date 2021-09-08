@@ -1,14 +1,6 @@
 from django.db import models
 
 
-class Cat(models.Model):
-    cat_id = models.AutoField(default = 1, primary_key = True)
-    name = models.TextField()
-    locate = models.TextField()
-    character = models.TextField()
-    preferences = models.TextField()
-
-
 class Post(models.Model):
     post_id = models.IntegerField(),
     title = models.CharField(max_length = 1000),
@@ -25,3 +17,12 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Cat(models.Model):
+    cat_id = models.AutoField(default = 1, primary_key = True)
+    name = models.TextField()
+    locate = models.TextField()
+    character = models.TextField()
+    preferences = models.TextField()
+
